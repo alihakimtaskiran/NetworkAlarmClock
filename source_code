@@ -34,7 +34,9 @@ void loop() {
   if(hour==8&&minute==0&&sec<6){
 tone(5,180);
 delay(10000);
-noTone(5);
+noTone(5);    
+delay(6000);
+
     
   }
   if(minute==0){
