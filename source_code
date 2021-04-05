@@ -7,6 +7,7 @@ const char *password = "PASSWORD HERE";//fill here
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
+byte hour,minute,sec;
 
 void setup() {
   Serial.begin(115200);
@@ -16,7 +17,9 @@ void setup() {
   Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
+    
     delay(500);
+    
     Serial.print(".");
   }
 
@@ -26,20 +29,20 @@ void setup() {
 
 void loop() {
   timeClient.update();
-  byte hour=timeClient.getHours();
-  byte minute = timeClient.getMinutes();
-  byte sec=timeClient.getSeconds();
+  hour = timeClient.getHours();
+  minute = timeClient.getMinutes();
+  sec=timeClient.getSeconds();
 
  while(hour>=8){
   if(hour==8&&minute==0&&sec<6){
 tone(5,180);
 delay(10000);
-noTone(5);    
-delay(6000);
-
-    
+noTone(5);
   }
-  if(minute==0){
+  if(minute==0&&sec<7){
+    tone(5,271);
+    delay(500);
+    noTone(5);
     tone(5,271);
     delay(500);
     noTone(5);
@@ -48,13 +51,18 @@ delay(6000);
     noTone(5);
   }
   
-  else if(minute%15==0&&sec<6){
+  else if(minute%15==0&&sec<7){
     tone(5,271);
     delay(1000);
     noTone(5);
+    delay(6000);
   }
- }
- 
-
-  delay(5000);
+  else
+  {}
+    
 }
+   delay(5000);
+ }
+
+
+
