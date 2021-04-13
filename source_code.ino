@@ -1,6 +1,3 @@
-/*
-
-*/
 #include <ESP8266WiFi.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
@@ -35,7 +32,6 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(2,LOW);
   timeClient.update();
 
   int hour = timeClient.getHours();
