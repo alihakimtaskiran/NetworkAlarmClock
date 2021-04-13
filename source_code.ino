@@ -57,7 +57,7 @@ void setup() {
 void loop() {
     MDNS.update();
 
-if(millis()%5000<500){
+if(millis()%5000<77){
   handle_timer();
 }
 else{
