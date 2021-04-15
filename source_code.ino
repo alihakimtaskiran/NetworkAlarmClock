@@ -16,6 +16,7 @@ WiFiServer server(80);
 void setup() {
   // Initialize Serial Monitor
   Serial.begin(115200);
+    
   // Connect to Wi-Fi
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -56,12 +57,8 @@ void setup() {
 
 void loop() {
     MDNS.update();
-
-if(millis()%5000<77){
-  handle_timer();
-}
-else{
-Serial.println("Iterating");}
+handle_timer();
+delay(5000);
 }
 
 void handle_timer(){
@@ -78,13 +75,23 @@ void handle_timer(){
   int sec = timeClient.getSeconds();
   Serial.print("Seconds: ");
   Serial.println(sec);  
-  if(hour>7){
+  if(hour>5){
     delay(5);//Extra time delays in order to avoid errors. NodeMCU has a bug which reboots the system as we perform new logic expression in another logic expression
-    if(hour==8&&minute==0&&sec<7){
+    if(hour==6&&minute==30&&sec<7){
       //waking up
       tone(speaker_pin,180);
       delay(10000);
       noTone(speaker_pin);
+      delay(700);
+      tone(speaker_pin,180);
+      delay(10000);
+      noTone(speaker_pin);
+      delay(700);
+      tone(speaker_pin,180);
+      delay(10000);
+      noTone(speaker_pin);
+      
+
     }
     else if(minute==0&&sec<7){//3 short beep hourly
       tone(speaker_pin,271);
@@ -105,7 +112,7 @@ void handle_timer(){
       noTone(speaker_pin);  
     }
     else{
-      delay(1);
+      delayMicroseconds(1);
       }
   }
 }
