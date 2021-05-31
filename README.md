@@ -4,4 +4,3 @@ Therefore we need a bell which rings each 15 minutes. This is a network based al
 It rings at 8.30 a.m. and rings each 15 minutes until 11.45 p.m.
 
 <img src="https://github.com/alihakimtaskiran/NetworkAlarmClock/raw/main/IMG_20210531_155903.jpg">
-It rings at 8.30 a.m. and rings each 15 minutes until 11.45 p.m.
